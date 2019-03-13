@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+<body>
+<div class="container-fluid">
+    <header>
+        <th:block th:include="~{fragments/navbar}"></th:block>
+    </header>
+    <main>
+        <div class="container">
+            <h1>Spred new viruses</h1>
+            <form th:action="@{/viruses/add}" method="post">
+                <div class="form-group">
+                    <label for="inputVirusName">Name</label>
+                    <input type="text" class="form-control" id="inputVirusName">
+                </div>
+                <div class="form-group">
+                    <label for="inputVirusDescription"> Description</label>
+                    <textarea id="inputVirusDescription" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="inputVirusSideEffect">Side Effect</label>
+                    <input type="text" class="form-control" id="inputVirusSideEffect">
+                </div>
+                <div class="form-group">
+                    <label for="inputVirusSideCreator">Side Effect</label>
+                    <input type="text" class="form-control" id="inputVirusSideCreator">
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="inputVirusIsDeadly">
+                    <label class="form-check-label" for="inputVirusIsDeadly">Is Deadly?</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="inputVirusCurable">
+                    <label class="form-check-label" for="inputVirusCurable">Is Curable?</label>
+                </div>
+                <th:block th:each="mutation : ${T(org.softuni.residentevil.domain.entities.Mutation).values()}">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="virusMutation" id="checkVirusMutation">
+                        <label class="form-check-label" for="checkVirusMutation"></label>
+                    </div>
+                </th:block>
+            </form>
+        </div>
+    </main>
+</div>
+</body>
+</html>
