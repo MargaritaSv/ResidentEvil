@@ -1,4 +1,4 @@
-package org.softuni.residentevil.domain.models.binding;
+package org.softuni.residentevil.domain.models.service;
 
 public class CapitalServiceModel {
     private String id;

@@ -1,17 +1,15 @@
-package org.softuni.residentevil.domain.models.binding;
+package org.softuni.residentevil.domain.models.view;
 
 import org.softuni.residentevil.domain.entities.Capital;
 import org.softuni.residentevil.domain.entities.Creater;
 import org.softuni.residentevil.domain.entities.Magnitude;
 import org.softuni.residentevil.domain.entities.Mutation;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
 
-public class VirusAddBindingModel {
+public class CapitalListViewModel {
+    private  String id;
     private String name;
     private String description;
     private String sideEffects;
@@ -22,14 +20,20 @@ public class VirusAddBindingModel {
     private Integer hoursUntilTurn;
     private Magnitude magnitude;
     private LocalDate releasedOn;
-    private List<Capital> capitals;
+    private List<String> capitals;
     private Mutation mutation;
 
-    public VirusAddBindingModel() {
+    public CapitalListViewModel() {
     }
 
-    @NotNull
-    @Size(min = 3, max = 10, message = "Invalid name!")
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -106,16 +110,15 @@ public class VirusAddBindingModel {
         return releasedOn;
     }
 
-
     public void setReleasedOn(LocalDate releasedOn) {
         this.releasedOn = releasedOn;
     }
 
-    public List<Capital> getCapitals() {
+    public List<String> getCapitals() {
         return capitals;
     }
 
-    public void setCapitals(List<Capital> capitals) {
+    public void setCapitals(List<String> capitals) {
         this.capitals = capitals;
     }
 

@@ -2,17 +2,21 @@ package org.softuni.residentevil.web.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.softuni.residentevil.domain.models.binding.VirusAddBindingModel;
+import org.softuni.residentevil.domain.models.view.CapitalListViewModel;
 import org.softuni.residentevil.service.CapitalService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomCollectionEditor;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.stream.Collectors;
 
 @Controller
@@ -35,7 +39,8 @@ public class VirusController extends BaseController {
         modelAndView.addObject("capitalNames",
                 this.capitalService.findAllCapitals()
                         .stream()
-                        .map(c -> c.getName()).collect(Collectors.toList()));
+                        .map(c -> this.modelMapper.map(c, CapitalListViewModel.class))
+                        .collect(Collectors.toList()));
 
         return super.view("add-virus", modelAndView);
     }
@@ -50,5 +55,14 @@ public class VirusController extends BaseController {
             return super.view("add-virus", modelAndView);
         }
         return super.redirect("/");
+    }
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
+        SimpleDateFormat date = new SimpleDateFormat("dd/mm/yyyy");
+        date.setLenient(false);
+
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(date,true));
     }
 }

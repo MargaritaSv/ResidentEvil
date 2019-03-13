@@ -1,6 +1,6 @@
 package org.softuni.residentevil.service;
 
-import org.softuni.residentevil.domain.models.binding.CapitalServiceModel;
+import org.softuni.residentevil.domain.models.service.CapitalServiceModel;
 
 import java.util.List;
 
