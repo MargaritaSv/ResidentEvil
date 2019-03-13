@@ -5,7 +5,6 @@ import org.softuni.residentevil.domain.models.binding.VirusAddBindingModel;
 import org.softuni.residentevil.domain.models.view.CapitalListViewModel;
 import org.softuni.residentevil.service.CapitalService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomCollectionEditor;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -33,7 +32,7 @@ public class VirusController extends BaseController {
     }
 
 
-    @GetMapping("/add") // moje da se s4ypi ako ne sme my dali imeto  t.e. da ne izlezat gre6kite
+    @GetMapping("/add") 
     public ModelAndView view(ModelAndView modelAndView, @ModelAttribute(name = "bindingModel") VirusAddBindingModel bindingModel) {
         modelAndView.addObject("bindingModel", bindingModel);
         modelAndView.addObject("capitalNames",
