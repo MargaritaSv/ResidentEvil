@@ -9,13 +9,14 @@
         <th:block th:include="~{fragments/navbar}"></th:block>
     </header>
     <main>
-        <div class="container">
+        <div class="container mt-4">
             <h1>Spred new viruses</h1>
             <form th:action="@{/viruses/add}" method="post">
-                <div class="form-group">
-                    <label for="inputVirusName">Name</label>
-                    <input type="text" class="form-control" id="inputVirusName">
-                </div>
+                <!--<div class="form-group" th:classappend="${#fields.hasErrors('name')}? 'has-danger'">-->
+                <!--<label for="inputVirusName">Name</label>-->
+                <!--<input type="text" th:field="*{name}" class="form-control" id="inputVirusName">-->
+                <!--<small th:each="error : ${#fields.Errors('name')}" th:text="${error}"></small>-->
+                <!--</div>-->
                 <div class="form-group">
                     <label for="inputVirusDescription"> Description</label>
                     <textarea id="inputVirusDescription" class="form-control" rows="3"></textarea>
@@ -36,12 +37,85 @@
                     <input class="form-check-input" type="checkbox" value="" id="inputVirusCurable">
                     <label class="form-check-label" for="inputVirusCurable">Is Curable?</label>
                 </div>
-                <th:block th:each="mutation : ${T(org.softuni.residentevil.domain.entities.Mutation).values()}">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="virusMutation" id="checkVirusMutation">
-                        <label class="form-check-label" for="checkVirusMutation"></label>
+
+                <div th:each="mutation : ${T(org.softuni.residentevil.domain.entities.Mutation).values()}">
+                    <input class="form-check-input" type="radio" name="virusMutation" id="checkVirusMutation"
+                           th:value="mutation">
+
+                </div>
+                <!--<th:block th:each="mutation : ${T(org.softuni.residentevil.domain.entities.Mutation).values()}">-->
+                <!--<div class="form-check">-->
+                <!--<input class="form-check-input" type="radio" name="virusMutation" id="checkVirusMutation">-->
+                <!--<label class="form-check-label" for="checkVirusMutation"></label>-->
+                <!--</div>-->
+                <!--</th:block>-->
+
+                <fieldset class="form-group">
+                    <div class="row">
+                        <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
+                        <div class="col-sm-10">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gridRadios"
+                                       id="inputVirusesMutation0"
+                                       value="option1" checked>
+                                <label class="form-check-label" for="inputVirusesMutation0">
+                                    ZOMBIE </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gridRadios"
+                                       id="inputVirusesMutation1"
+                                       value="option1" checked>
+                                <label class="form-check-label" for="inputVirusesMutation1">
+                                    T_078_TYRANT </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gridRadios"
+                                       id="inputVirusesMutation2"
+                                       value="option2">
+                                <label class="form-check-label" for="inputVirusesMutation2">
+                                    GIANT_SPIDER </label>
+                            </div>
+                            <div class="form-check disabled">
+                                <input class="form-check-input" type="radio" name="gridRadios"
+                                       id="inputVirusesMutation3"
+                                       value="option3" disabled>
+                                <label class="form-check-label" for="inputVirusesMutation3">
+                                    Save humanity
+                                </label>
+                            </div>
+                        </div>
                     </div>
-                </th:block>
+                </fieldset>
+                <div class="form-group row">
+                    <label for="inputVirusTurnOverRate" class="col-sm-2 col-form-label">Turnover rate</label>
+                    <input type="number" class="form-control" id="inputVirusTurnOverRate">
+                </div>
+                <div class="form-group row">
+                    <label for="inputVirusHours" class="col-sm-2 col-form-label">Hours Until Run</label>
+                    <input type="number" class="form-control" id="inputVirusHours">
+                </div>
+
+                <!--<div class="form-group">-->
+                <!--<label for="exampleFormControlSelect1">Magnitude</label>-->
+                <!--<select class="form-control" id="exampleFormControlSelect1">-->
+                <!--<option th:block="magnitude : ${T(org.softuni.residentevil.domain.entities.Magnitude)}"-->
+                <!--th:value="${magnitude}" th:text="{magnitude}"></option>-->
+                <!--</select>-->
+                <!--</div>-->
+
+                <div class="form-group row">
+                    <label for="inputVirusReleaseDate" class="col-sm-2 col-form-label">Release Date</label>
+                    <input type="date" class="form-control" id="inputVirusReleaseDate">
+                </div>
+
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect2">Affected Capitals</label>
+                    <select class="form-control" id="exampleFormControlSelect2">
+                        <option th:each="capital : ${capitalNames}" th:value="${capital}" th:text="${capital}"></option>
+                    </select>
+                </div>
+                <button class="button re-background">Spread</button>
             </form>
         </div>
     </main>
