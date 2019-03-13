@@ -13,7 +13,7 @@
     <version>010.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>residentevil</name>
-    <description>Resident Evil is system that registers virus spreachs accros the word</description>
+    <description>Resident Evil is system that registers virus spreads across the word</description>
 
     <properties>
         <java.version>1.8</java.version>
