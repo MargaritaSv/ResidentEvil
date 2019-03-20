@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.softuni.residentevil.domain.models.binding.VirusAddBindingModel;
 import org.softuni.residentevil.domain.models.view.CapitalListViewModel;
 import org.softuni.residentevil.service.CapitalService;
+import org.softuni.residentevil.service.VirusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -23,16 +24,17 @@ import java.util.stream.Collectors;
 public class VirusController extends BaseController {
 
     private final CapitalService capitalService;
+    private final VirusService virusService;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public VirusController(CapitalService capitalService, ModelMapper modelMapper) {
+    public VirusController(CapitalService capitalService, ModelMapper modelMapper, VirusService virusService) {
         this.capitalService = capitalService;
+        this.virusService = virusService;
         this.modelMapper = modelMapper;
     }
 
-
-    @GetMapping("/add")//podavame my modela,za da go nameri vuv view-to !!!
+    @GetMapping("/add")
     public ModelAndView view(ModelAndView modelAndView, @ModelAttribute(name = "bindingModel") VirusAddBindingModel bindingModel) {
         modelAndView.addObject("bindingModel", bindingModel);
         modelAndView.addObject("capitalNames",
@@ -44,7 +46,7 @@ public class VirusController extends BaseController {
         return super.view("add-virus", modelAndView);
     }
 
-    @PostMapping("/add")//zakachame binding modela, za da ne go izgybim otnovo!!!!!!
+    @PostMapping("/add")
     public ModelAndView addConfirm(ModelAndView modelAndView,
                                    @Valid @ModelAttribute(name = "bindingModel") VirusAddBindingModel bindingModel,
                                    BindingResult bindingResult) {
@@ -53,6 +55,8 @@ public class VirusController extends BaseController {
             modelAndView.addObject("bindingModel", bindingModel);
             return super.view("add-virus", modelAndView);
         }
+
+        virusService.save(bindingModel);
         return super.redirect("/");
     }
 
