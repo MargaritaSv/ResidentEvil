@@ -30,9 +30,9 @@
 
                 </div>
                 <div class="form-group">
-                    <label for="inputVirusSideCreator">Side Effect</label>
-                    <input type="text" class="form-control" id="inputVirusSideCreator" th:field="*{sideEffects}">
-                    <small th:each="error : ${#fields.errors('sideEffects')}" th:text="${error}"></small>
+                    <label for="inputVirusSideCreator">Side Creator</label>
+                    <input type="text" class="form-control" id="inputVirusSideCreator" th:field="*{creater}">
+                    <small th:each="error : ${#fields.errors('creater')}" th:text="${error}"></small>
 
                 </div>
                 <div class="form-check">

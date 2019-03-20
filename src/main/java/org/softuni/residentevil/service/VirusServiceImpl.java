@@ -8,6 +8,7 @@ import org.softuni.residentevil.repository.VirusRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class VirusServiceImpl implements VirusService {
@@ -28,9 +29,11 @@ public class VirusServiceImpl implements VirusService {
         virus.setName(virusAddBindingModel.getName());
         virus.setDescription(virusAddBindingModel.getDescription());
         virus.setCreater(virusAddBindingModel.getCreater());
-        virus.setDeadly(virusAddBindingModel.isDeadly() == true);
+        virus.setDeadly(virusAddBindingModel.isDeadly());
         virus.setMutation(virusAddBindingModel.getMutation());
         virus.setMagnitude(virusAddBindingModel.getMagnitude());
+        virus.setReleasedOn(virusAddBindingModel.getReleasedOn());
+        virus.setCreater(virusAddBindingModel.getCreater());
         virus.setCapitals(new ArrayList());
 
         for (Capital capital : capitalRepository.findAll()) {
@@ -38,5 +41,10 @@ public class VirusServiceImpl implements VirusService {
         }
 
         this.virusRepository.saveAndFlush(virus);
+    }
+
+    @Override
+    public List<Viruses> allViruses() {
+        return this.virusRepository.findAll();
     }
 }

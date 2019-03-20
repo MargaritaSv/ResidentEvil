@@ -2,6 +2,7 @@ package org.softuni.residentevil.web.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.softuni.residentevil.domain.models.binding.VirusAddBindingModel;
+import org.softuni.residentevil.domain.models.binding.VirusShowBindingModel;
 import org.softuni.residentevil.domain.models.view.CapitalListViewModel;
 import org.softuni.residentevil.service.CapitalService;
 import org.softuni.residentevil.service.VirusService;
@@ -70,12 +71,9 @@ public class VirusController extends BaseController {
     }
 
     @GetMapping("/show")
-    public ModelAndView show(ModelAndView modelAndView) {
+    public ModelAndView show(ModelAndView modelAndView, @ModelAttribute(name = "viruses") VirusShowBindingModel virusShowBindingModel) {
+        modelAndView.addObject("viruses", this.virusService.allViruses());
         return super.view("show");
-    }
-
-    public ModelAndView showConfirm(ModelAndView modelAndView) {
-        return super.redirect("/show");
     }
 
     @GetMapping("/delete/{id}")

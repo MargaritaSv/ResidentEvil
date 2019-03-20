@@ -20,9 +20,9 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:if="${virus.empty}">
-                <td colspan="2"> There isn't any record</td>
-            </tr>
+            <!--<tr th:if="${virus.empty}">-->
+            <!--<td colspan="2"> There isn't any record</td>-->
+            <!--</tr>-->
             <tr th:each="virus : ${viruses}">
                             
                 <td><span th:text="${virus.id}"> </span></td>
