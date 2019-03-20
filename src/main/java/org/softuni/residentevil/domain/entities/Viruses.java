@@ -1,5 +1,9 @@
 package org.softuni.residentevil.domain.entities;
 
+import org.softuni.residentevil.domain.entities.enums.Creater;
+import org.softuni.residentevil.domain.entities.enums.Magnitude;
+import org.softuni.residentevil.domain.entities.enums.Mutation;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;

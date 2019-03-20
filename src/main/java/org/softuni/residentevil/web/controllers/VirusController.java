@@ -32,7 +32,7 @@ public class VirusController extends BaseController {
     }
 
 
-    @GetMapping("/add") 
+    @GetMapping("/add")//podavame my modela,za da go nameri vuv view-to !!!
     public ModelAndView view(ModelAndView modelAndView, @ModelAttribute(name = "bindingModel") VirusAddBindingModel bindingModel) {
         modelAndView.addObject("bindingModel", bindingModel);
         modelAndView.addObject("capitalNames",
@@ -44,7 +44,7 @@ public class VirusController extends BaseController {
         return super.view("add-virus", modelAndView);
     }
 
-    @PostMapping("/add")
+    @PostMapping("/add")//zakachame binding modela, za da ne go izgybim otnovo!!!!!!
     public ModelAndView addConfirm(ModelAndView modelAndView,
                                    @Valid @ModelAttribute(name = "bindingModel") VirusAddBindingModel bindingModel,
                                    BindingResult bindingResult) {
@@ -62,6 +62,20 @@ public class VirusController extends BaseController {
         SimpleDateFormat date = new SimpleDateFormat("dd/mm/yyyy");
         date.setLenient(false);
 
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(date,true));
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(date, true));
+    }
+
+    @GetMapping("/show")
+    public ModelAndView show(ModelAndView modelAndView) {
+        return super.view("show");
+    }
+
+    public ModelAndView showConfirm(ModelAndView modelAndView) {
+        return super.redirect("/show");
+    }
+
+    @GetMapping("/delete/{id}")
+    public ModelAndView delete(@PathVariable String id) {
+        return super.view("/");
     }
 }

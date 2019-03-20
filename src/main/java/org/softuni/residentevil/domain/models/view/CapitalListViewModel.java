@@ -1,15 +1,14 @@
 package org.softuni.residentevil.domain.models.view;
 
-import org.softuni.residentevil.domain.entities.Capital;
-import org.softuni.residentevil.domain.entities.Creater;
-import org.softuni.residentevil.domain.entities.Magnitude;
-import org.softuni.residentevil.domain.entities.Mutation;
+import org.softuni.residentevil.domain.entities.enums.Creater;
+import org.softuni.residentevil.domain.entities.enums.Magnitude;
+import org.softuni.residentevil.domain.entities.enums.Mutation;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public class CapitalListViewModel {
-    private  String id;
+    private String id;
     private String name;
     private String description;
     private String sideEffects;

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+<body>
+<div class="container-fluid">
+    <header>
+        <th:block th:include="~{fragments/navbar}"></th:block>
+    </header>
+    <main>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Magnitude</th>
+                <th scope="col">Released On</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${virus.empty}">
+                <td colspan="2"> There isn't any record</td>
+            </tr>
+            <tr th:each="virus : ${viruses}">
+                            
+                <td><span th:text="${virus.id}"> </span></td>
+                            
+                <td><span th:text="${virus.name}">  </span></td>
+                            
+                <td><span th:text="${virus.magnitude}">  </span></td>
+                            
+                <td><span th:text="${virus.releasedOn}"> </span></td>
+                <td>
+                    <a class="btn btn-info" href="@{/viruses/edit/{id}(id=${virus.id})}">Edit</a>
+                    <a class="btn btn-info" href="@{/viruses/delete/{id}(id=${virus.id})}">Delete</a>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </main>
+</div>
+</body>
+</html>

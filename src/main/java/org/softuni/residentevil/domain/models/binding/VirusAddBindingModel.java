@@ -1,9 +1,9 @@
 package org.softuni.residentevil.domain.models.binding;
 
 import org.softuni.residentevil.domain.entities.Capital;
-import org.softuni.residentevil.domain.entities.Creater;
-import org.softuni.residentevil.domain.entities.Magnitude;
-import org.softuni.residentevil.domain.entities.Mutation;
+import org.softuni.residentevil.domain.entities.enums.Creater;
+import org.softuni.residentevil.domain.entities.enums.Magnitude;
+import org.softuni.residentevil.domain.entities.enums.Mutation;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
@@ -102,10 +102,11 @@ public class VirusAddBindingModel {
         this.magnitude = magnitude;
     }
 
+
+   // @DateTimeFormat(pattern = "yyyy-mm-dd")
     public LocalDate getReleasedOn() {
         return releasedOn;
     }
-
 
     public void setReleasedOn(LocalDate releasedOn) {
         this.releasedOn = releasedOn;
