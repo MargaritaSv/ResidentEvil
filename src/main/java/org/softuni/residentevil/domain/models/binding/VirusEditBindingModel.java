@@ -1,16 +1,14 @@
-package org.softuni.residentevil.domain.entities;
+package org.softuni.residentevil.domain.models.binding;
 
+import org.softuni.residentevil.domain.entities.Capital;
 import org.softuni.residentevil.domain.entities.enums.Creater;
 import org.softuni.residentevil.domain.entities.enums.Magnitude;
 import org.softuni.residentevil.domain.entities.enums.Mutation;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity
-@Table(name = "viruses")
-public class Viruses extends BaseEntity {
+public class VirusEditBindingModel {
 
     private String name;
     private String description;
@@ -25,30 +23,9 @@ public class Viruses extends BaseEntity {
     private List<Capital> capitals;
     private Mutation mutation;
 
-    @Column(name = "creater")
-    @Enumerated(EnumType.STRING)
-    public Creater getCreater() {
-        return creater;
+    public VirusEditBindingModel() {
     }
 
-    public void setCreater(Creater creater) {
-        this.creater = creater;
-    }
-
-    @Column(name = "mutation")
-    @Enumerated(EnumType.STRING)
-    public Mutation getMutation() {
-        return mutation;
-    }
-
-    public void setMutation(Mutation mutation) {
-        this.mutation = mutation;
-    }
-
-    public Viruses() {
-    }
-
-    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -57,7 +34,6 @@ public class Viruses extends BaseEntity {
         this.name = name;
     }
 
-    @Column(name = "description")
     public String getDescription() {
         return description;
     }
@@ -66,7 +42,6 @@ public class Viruses extends BaseEntity {
         this.description = description;
     }
 
-    @Column(name = "side_effect")
     public String getSideEffects() {
         return sideEffects;
     }
@@ -75,7 +50,14 @@ public class Viruses extends BaseEntity {
         this.sideEffects = sideEffects;
     }
 
-    @Column(name = "is_deadly")
+    public Creater getCreater() {
+        return creater;
+    }
+
+    public void setCreater(Creater creater) {
+        this.creater = creater;
+    }
+
     public boolean isDeadly() {
         return isDeadly;
     }
@@ -84,7 +66,6 @@ public class Viruses extends BaseEntity {
         isDeadly = deadly;
     }
 
-    @Column(name = "is_curable")
     public boolean isCurable() {
         return isCurable;
     }
@@ -93,7 +74,6 @@ public class Viruses extends BaseEntity {
         isCurable = curable;
     }
 
-    @Column(name = "turnover_rate")
     public Integer getTurnoverRate() {
         return turnoverRate;
     }
@@ -102,7 +82,6 @@ public class Viruses extends BaseEntity {
         this.turnoverRate = turnoverRate;
     }
 
-    @Column(name = "hours_unit_turn")
     public Integer getHoursUntilTurn() {
         return hoursUntilTurn;
     }
@@ -111,7 +90,6 @@ public class Viruses extends BaseEntity {
         this.hoursUntilTurn = hoursUntilTurn;
     }
 
-    @Column(name = "magnitude")
     public Magnitude getMagnitude() {
         return magnitude;
     }
@@ -120,7 +98,6 @@ public class Viruses extends BaseEntity {
         this.magnitude = magnitude;
     }
 
-    @Column(name = "released_on")
     public LocalDate getReleasedOn() {
         return releasedOn;
     }
@@ -129,15 +106,19 @@ public class Viruses extends BaseEntity {
         this.releasedOn = releasedOn;
     }
 
-    @ManyToMany(targetEntity = Capital.class)
-    @JoinTable(name = "viruses_capitals",
-            joinColumns = @JoinColumn(name = "versus_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "capital_id", referencedColumnName = "id"))
     public List<Capital> getCapitals() {
         return capitals;
     }
 
     public void setCapitals(List<Capital> capitals) {
         this.capitals = capitals;
+    }
+
+    public Mutation getMutation() {
+        return mutation;
+    }
+
+    public void setMutation(Mutation mutation) {
+        this.mutation = mutation;
     }
 }

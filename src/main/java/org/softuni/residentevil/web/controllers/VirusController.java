@@ -77,7 +77,8 @@ public class VirusController extends BaseController {
     }
 
     @GetMapping("/delete/{id}")
-    public ModelAndView delete(@PathVariable String id) {
-        return super.view("/");
+    public ModelAndView delete(@PathVariable Integer id) {
+        this.virusService.deleteById(id);
+        return super.redirect("/viruses/show");
     }
 }

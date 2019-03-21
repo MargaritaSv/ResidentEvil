@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface CapitalRepository extends JpaRepository<Capital, String> {
 
-    List<Capital> findAll();
+   // List<Capital> findAll();
 }

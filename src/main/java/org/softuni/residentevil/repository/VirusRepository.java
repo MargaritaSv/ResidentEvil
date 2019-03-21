@@ -12,13 +12,5 @@ import java.util.List;
 public interface VirusRepository extends JpaRepository<Viruses, Integer> {
     Capital findByName(String name);
 
-    //    @Query(value = "SELECT v FROM viruses v")
-////    List<Viruses> findAll();
-//    @Query(name = "select v from viruses as v",
-//            nativeQuery = true)
-  // List<Viruses> findAll();
-//
-    Viruses findVirusesById(String id);
-
-
+    Viruses findVirusesById(Integer id);
 }
