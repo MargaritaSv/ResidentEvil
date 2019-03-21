@@ -23,9 +23,9 @@
             <!--<tr th:if="${virus.empty}">-->
             <!--<td colspan="2"> There isn't any record</td>-->
             <!--</tr>-->
-            <tr th:each="virus : ${viruses}">
+            <tr th:each="virus , iter : ${bindingModel}">
                             
-                <td><span th:text="${virus.id}"> </span></td>
+                <td><span th:text="${iter.count}"> </span></td>
                             
                 <td><span th:text="${virus.name}">  </span></td>
                             

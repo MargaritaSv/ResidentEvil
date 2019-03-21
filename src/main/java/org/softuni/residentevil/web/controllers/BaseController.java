@@ -5,7 +5,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 public abstract class BaseController {
 
-    protected ModelAndView view(String view, ModelAndView modelAndView) {
+    protected ModelAndView view(String view, Object object) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("bindingModel", object);
         modelAndView.setViewName(view);
         return modelAndView;
     }

@@ -44,7 +44,10 @@ public class VirusController extends BaseController {
                         .map(c -> this.modelMapper.map(c, CapitalListViewModel.class))
                         .collect(Collectors.toList()));
 
-        return super.view("add-virus", modelAndView);
+        modelAndView.setViewName("add-virus");
+        return modelAndView;
+        // modelAndView.addAllObjects()
+        // return super.view("add-virus", modelAndView);
     }
 
     @PostMapping("/add")
@@ -53,8 +56,8 @@ public class VirusController extends BaseController {
                                    BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            modelAndView.addObject("bindingModel", bindingModel);
-            return super.view("add-virus", modelAndView);
+            //  modelAndView.addObject("bindingModel", bindingModel);
+            return super.view("add-virus", bindingModel);
         }
 
         virusService.save(bindingModel);
@@ -71,9 +74,8 @@ public class VirusController extends BaseController {
     }
 
     @GetMapping("/show")
-    public ModelAndView show(ModelAndView modelAndView, @ModelAttribute(name = "viruses") VirusShowBindingModel virusShowBindingModel) {
-        modelAndView.addObject("viruses", this.virusService.allViruses());
-        return super.view("show");
+    public ModelAndView show(@ModelAttribute(name = "viruses") VirusShowBindingModel virusShowBindingModel) {
+        return super.view("show", this.virusService.allViruses());
     }
 
     @GetMapping("/delete/{id}")
